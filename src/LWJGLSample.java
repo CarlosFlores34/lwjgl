@@ -18,6 +18,11 @@ import static org.lwjgl.system.MemoryUtil.*;
 
 public class LWJGLSample {
 
+    float posX = 0.0f;
+    float posY = 0.0f;
+    float posZ = 0.0f;
+
+    
     // The window handle
     private long window;
 
@@ -63,9 +68,32 @@ public class LWJGLSample {
                 glfwSetWindowShouldClose(window, true); // We will detect this in the rendering loop
             }
             
-            if (key == GLFW_KEY_RIGHT){
-                System.out.println("Se presionó la flecha derecha");
+            if (key == GLFW_KEY_RIGHT && action == GLFW_RELEASE){
+                 this.posX+=0.1f;
             }
+            
+            if (key == GLFW_KEY_LEFT && action == GLFW_RELEASE){
+                 this.posX-=0.1f;
+            }
+
+            if (key == GLFW_KEY_PAGE_UP && action == GLFW_RELEASE){
+                 this.posY+=0.1f;
+            }
+            
+            if (key == GLFW_KEY_PAGE_DOWN && action == GLFW_RELEASE){
+                 this.posY-=0.1f;
+            }            
+            
+            if (key == GLFW_KEY_UP && action == GLFW_RELEASE){
+                 this.posZ-=0.1f;
+            }
+            
+            if (key == GLFW_KEY_DOWN && action == GLFW_RELEASE){
+                 this.posZ+=0.1f;
+            }
+            
+            System.out.println(String.format("x = %f, y = %f, z = %f",posX,posY,posZ));
+         
         });
 
         // Get the thread stack and push a new frame
@@ -106,7 +134,7 @@ public class LWJGLSample {
         GL.createCapabilities();
 
         float rotAngle = 0.1f;
-
+        
         // Set the clear color
         glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 
@@ -115,24 +143,32 @@ public class LWJGLSample {
         while (!glfwWindowShouldClose(window)) {
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
 
-            glfwSwapBuffers(window); // swap the color buffers
+            //glfwSwapBuffers(window); // swap the color buffers
 
             // Poll for window events. The key callback above will only be
             // invoked during this call.
-            glfwPollEvents();
+            //glfwPollEvents();
 
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
             glMatrixMode(GL_PROJECTION);
             glLoadIdentity();         // Reset the model-view matrix
             glTranslatef(0.0f, 0.0f, 0.0f);
-
-            glMatrixMode(GL_MODELVIEW);
-
-            GL11.glRotatef(rotAngle, 1.0f, 1.0f, 0.0f);
+                                   
+            // Esta opción dibuja solo las lineas de la figura
             glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+            
+            // Esta otra opción dibuja las figuras rellenas
+            glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+            GL11.glEnable(GL11.GL_DEPTH_TEST);          
+            
+            glMatrixMode(GL_MODELVIEW);
+            glLoadIdentity();
+            glTranslatef(posX, posY, posZ);
+            
+            GL11.glRotatef(rotAngle, 1.0f, 1.0f, 0.0f);
+            
             // Draw the side faces
-
             glBegin(GL_QUADS);                // Begin drawing the color cube with 6 quads
                 // Top face (y = 1.0f)
                 // Define vertices in counter-clockwise (CCW) order with normal pointing out
@@ -177,7 +213,7 @@ public class LWJGLSample {
                 glVertex3f(0.2f, -0.2f, 0.2f);
                 glVertex3f(0.2f, -0.2f, -0.2f);
             glEnd();  // End of drawing color-cube								// Done Dr
-            rotAngle = 0.5f;
+            rotAngle += 0.5f;
 
             glfwSwapBuffers(window); // swap the color buffers
             // Poll for window events. The key callback above will only be
