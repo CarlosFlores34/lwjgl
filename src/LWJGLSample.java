@@ -141,14 +141,15 @@ public class LWJGLSample {
         // Run the rendering loop until the user has attempted to close
         // the window or has pressed the ESCAPE key.
         while (!glfwWindowShouldClose(window)) {
-            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
+            //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
 
             //glfwSwapBuffers(window); // swap the color buffers
 
             // Poll for window events. The key callback above will only be
             // invoked during this call.
             //glfwPollEvents();
-
+            
+            GL11.glEnable(GL11.GL_DEPTH_TEST);          
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
             glMatrixMode(GL_PROJECTION);
@@ -156,12 +157,11 @@ public class LWJGLSample {
             glTranslatef(0.0f, 0.0f, 0.0f);
                                    
             // Esta opción dibuja solo las lineas de la figura
-            glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+            //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
             
             // Esta otra opción dibuja las figuras rellenas
             glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-            GL11.glEnable(GL11.GL_DEPTH_TEST);          
-            
+                        
             glMatrixMode(GL_MODELVIEW);
             glLoadIdentity();
             glTranslatef(posX, posY, posZ);
