@@ -62,6 +62,10 @@ public class LWJGLSample {
             if (key == GLFW_KEY_ESCAPE && action == GLFW_RELEASE) {
                 glfwSetWindowShouldClose(window, true); // We will detect this in the rendering loop
             }
+            
+            if (key == GLFW_KEY_RIGHT){
+                System.out.println("Se presionó la flecha derecha");
+            }
         });
 
         // Get the thread stack and push a new frame
@@ -103,7 +107,7 @@ public class LWJGLSample {
 
         float rotAngle = 0.1f;
 
-// Set the clear color
+        // Set the clear color
         glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 
         // Run the rendering loop until the user has attempted to close
@@ -130,48 +134,48 @@ public class LWJGLSample {
             // Draw the side faces
 
             glBegin(GL_QUADS);                // Begin drawing the color cube with 6 quads
-            // Top face (y = 1.0f)
-            // Define vertices in counter-clockwise (CCW) order with normal pointing out
-            glColor3f(0.0f, 1.0f, 0.0f);     // Green
-            glVertex3f(0.2f, 0.2f, -0.2f);
-            glVertex3f(-0.2f, 0.2f, -0.2f);
-            glVertex3f(-0.2f, 0.2f, 0.2f);
-            glVertex3f(0.2f, 0.2f, 0.2f);
+                // Top face (y = 1.0f)
+                // Define vertices in counter-clockwise (CCW) order with normal pointing out
+                glColor3f(0.0f, 1.0f, 0.0f);     // Green
+                glVertex3f(0.2f, 0.2f, -0.2f);
+                glVertex3f(-0.2f, 0.2f, -0.2f);
+                glVertex3f(-0.2f, 0.2f, 0.2f);
+                glVertex3f(0.2f, 0.2f, 0.2f);
 
-            // Bottom face (y = -1.0f)
-            glColor3f(1.0f, 0.5f, 0.0f);     // Orange
-            glVertex3f(0.2f, -0.2f, 0.2f);
-            glVertex3f(-0.2f, -0.2f, 0.2f);
-            glVertex3f(-0.2f, -0.2f, -0.2f);
-            glVertex3f(0.2f, -0.2f, -0.2f);
+                // Bottom face (y = -1.0f)
+                glColor3f(1.0f, 0.5f, 0.0f);     // Orange
+                glVertex3f(0.2f, -0.2f, 0.2f);
+                glVertex3f(-0.2f, -0.2f, 0.2f);
+                glVertex3f(-0.2f, -0.2f, -0.2f);
+                glVertex3f(0.2f, -0.2f, -0.2f);
 
-            // Front face  (z = 1.0f)
-            glColor3f(1.0f, 0.0f, 0.0f);     // Red
-            glVertex3f(0.2f, 0.2f, 0.2f);
-            glVertex3f(-0.2f, 0.2f, 0.2f);
-            glVertex3f(-0.2f, -0.2f, 0.2f);
-            glVertex3f(0.2f, -0.2f, 0.2f);
+                // Front face  (z = 1.0f)
+                glColor3f(1.0f, 0.0f, 0.0f);     // Red
+                glVertex3f(0.2f, 0.2f, 0.2f);
+                glVertex3f(-0.2f, 0.2f, 0.2f);
+                glVertex3f(-0.2f, -0.2f, 0.2f);
+                glVertex3f(0.2f, -0.2f, 0.2f);
 
-            // Back face (z = -1.0f)
-            glColor3f(0.0f, 1.0f, 1.0f);     // Yellow
-            glVertex3f(0.2f, -0.2f, -0.2f);
-            glVertex3f(-0.2f, -0.2f, -0.2f);
-            glVertex3f(-0.2f, 0.2f, -0.2f);
-            glVertex3f(0.2f, 0.2f, -0.2f);
+                // Back face (z = -1.0f)
+                glColor3f(0.0f, 1.0f, 1.0f);     // Yellow
+                glVertex3f(0.2f, -0.2f, -0.2f);
+                glVertex3f(-0.2f, -0.2f, -0.2f);
+                glVertex3f(-0.2f, 0.2f, -0.2f);
+                glVertex3f(0.2f, 0.2f, -0.2f);
 
-            // Left face (x = -1.0f)
-            glColor3f(0.0f, 0.0f, 1.0f);     // Blue
-            glVertex3f(-0.2f, 0.2f, 0.2f);
-            glVertex3f(-0.2f, 0.2f, -0.2f);
-            glVertex3f(-0.2f, -0.2f, -0.2f);
-            glVertex3f(-0.2f, -0.2f, 0.2f);
+                // Left face (x = -1.0f)
+                glColor3f(0.0f, 0.0f, 1.0f);     // Blue
+                glVertex3f(-0.2f, 0.2f, 0.2f);
+                glVertex3f(-0.2f, 0.2f, -0.2f);
+                glVertex3f(-0.2f, -0.2f, -0.2f);
+                glVertex3f(-0.2f, -0.2f, 0.2f);
 
-            // Right face (x = 1.0f)
-            glColor3f(1.0f, 0.0f, 1.0f);     // Magenta
-            glVertex3f(0.2f, 0.2f, -0.2f);
-            glVertex3f(0.2f, 0.2f, 0.2f);
-            glVertex3f(0.2f, -0.2f, 0.2f);
-            glVertex3f(0.2f, -0.2f, -0.2f);
+                // Right face (x = 1.0f)
+                glColor3f(1.0f, 0.0f, 1.0f);     // Magenta
+                glVertex3f(0.2f, 0.2f, -0.2f);
+                glVertex3f(0.2f, 0.2f, 0.2f);
+                glVertex3f(0.2f, -0.2f, 0.2f);
+                glVertex3f(0.2f, -0.2f, -0.2f);
             glEnd();  // End of drawing color-cube								// Done Dr
             rotAngle = 0.5f;
 
