@@ -8,10 +8,10 @@
  * @author gmendez
  */
 
-import org.joml.Vector3f;
+// import org.joml.Vector3f;
 
 public class Camera {
-
+/*
     private final Vector3f position;
 
     private final Vector3f rotation;
@@ -63,4 +63,5 @@ public class Camera {
         rotation.y += offsetY;
         rotation.z += offsetZ;
     }
+*/
 }
